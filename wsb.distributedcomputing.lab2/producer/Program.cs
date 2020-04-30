@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Confluent.Kafka;
+using System.Threading;
 
 namespace producer
 {
@@ -8,7 +9,7 @@ namespace producer
     {
         static async Task Main(string[] args)
         {
-            var config = new ProducerConfig { BootstrapServers = "kafka:9092" };
+            var config = new ProducerConfig { BootstrapServers = Environment.GetEnvironmentVariable("KAFKA") };
             var topic = Environment.GetEnvironmentVariable("TOPIC");
             if (topic == null)
                 Console.Error.WriteLine("no TOPIC environment variable specified");
@@ -23,6 +24,7 @@ namespace producer
                     {
                         var dr = await p.ProduceAsync(topic, new Message<Null, string> { Value = DateTime.UtcNow.ToString() });
                         Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
+                        Thread.Sleep(1000);
                     }
                     catch (ProduceException<Null, string> e)
                     {
