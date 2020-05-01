@@ -49,6 +49,7 @@ namespace consumer
                         try
                         {
                             var cr = c.Consume(cts.Token);
+                            Thread.Sleep(1500);
                             consumed(cr);
                         }
                         catch (ConsumeException e)

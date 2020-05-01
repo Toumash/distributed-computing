@@ -86,3 +86,36 @@ services:
     environment:
       TOPIC: test2,test3
       KAFKA: kafka1:19092
+
+  consumer3:
+    image: consumer:latest
+    build:
+      context: ./consumer
+      dockerfile: Dockerfile
+    links:
+      - "kafka1"
+    environment:
+      TOPIC: test3,test1
+      KAFKA: kafka1:19092
+
+  consumer4:
+    image: consumer:latest
+    build:
+      context: ./consumer
+      dockerfile: Dockerfile
+    links:
+      - "kafka1"
+    environment:
+      TOPIC: test1,test2
+      KAFKA: kafka1:19092
+      
+  consumer5:
+    image: consumer:latest
+    build:
+      context: ./consumer
+      dockerfile: Dockerfile
+    links:
+      - "kafka1"
+    environment:
+      TOPIC: test2,test3
+      KAFKA: kafka1:19092
