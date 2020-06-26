@@ -1,4 +1,3 @@
 # distributed-computing
 
-Zadania z 
-https://github.com/KamilLepek/didactics
+Rozwiązania zadań  z  https://github.com/KamilLepek/didactics
